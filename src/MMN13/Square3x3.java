@@ -99,28 +99,30 @@ public class Square3x3 {
 	 * @return True if it does, false otherwise
 	 */
 	public boolean allThere() {
-		// Need to check my logic, this is wrong logic
-		int[] full_array = new int[this.MAX_CELLS_IN_ROW_COL * this.MAX_CELLS_IN_ROW_COL];
+		// Create array in length of 9 and fill it with false values
+		boolean[] full_array = new boolean[this.MAX_CELLS_IN_ROW_COL * this.MAX_CELLS_IN_ROW_COL];
 		for (int i=0; i<this.MAX_CELLS_IN_ROW_COL * this.MAX_CELLS_IN_ROW_COL; i++) {
-			full_array[i] = i + 1;
+			full_array[i] = false;
 		}
 
-		boolean boolToReturn = true;
+		// Check for each number in the square if it in range of full_array
 		for (int i=0; i<this._square.length; i++) {
 			for (int j=0; j<this._square[i].length; j++) {
 				for (int k=0; k<full_array.length; k++) {
-					if (this._square[i][j] == full_array[k]){
-						full_array[k] = this.DEFAULT_VALUE;
+					if (this._square[i][j] == k + 1){
+						// If the number is in range, its change the value in index to true
+						full_array[k] = true;
 					}
 				}
 			}
 		}
+		// Check that all values in full_array are true, if so return true
 		for (int i=0; i<full_array.length; i++) {
-			if (full_array[i] != this.DEFAULT_VALUE) {
-				boolToReturn = false;
+			if (!full_array[i]) {
+				return false;
 			}
 		}
-		return boolToReturn;
+		return true;
 	}
 
 	/**
@@ -130,7 +132,7 @@ public class Square3x3 {
 	 */
 	public void whosThereRow (int row, boolean[] values ) {
 		// Check if the row number is invalid
-		if (check_if_index_is_valid(row, this.ALLOWED_INDEXES)) {
+		if (check_if_index_is_valid(row)) {
 			// The row number is valid, so we check if the 1-9 numbers appear in the square
 			for (int i=0; i<this._square[row].length; i++){
 				// Check that the values of a cell and validate it is in range of 1-9 (include)
@@ -148,7 +150,7 @@ public class Square3x3 {
 	 */
 	public void whosThereCol (int col, boolean[] values )  {
 		// Check if the col number is invalid
-		if (check_if_index_is_valid(col, this.ALLOWED_INDEXES)){
+		if (check_if_index_is_valid(col)){
 			// The col number is valid, so we check if the 1-9 numbers appear in the square
 			for (int i=0; i<this._square.length; i++) {
 				// Check that the values of a cell and validate it is in range of 1-9 (include)
@@ -161,13 +163,13 @@ public class Square3x3 {
 
 	// This function checks if a given values of row and col is legal and in range of the array
 	private boolean check_if_row_col_values_is_legal(int row, int col){
-		return (check_if_index_is_valid(row, this.ALLOWED_INDEXES) && check_if_index_is_valid(col, this.ALLOWED_INDEXES));
+		return (check_if_index_is_valid(row) && check_if_index_is_valid(col));
 	}
 
 	// This function checks if given index of row/col is valid in array {0, 1, 2}
-	private boolean check_if_index_is_valid(int index, int[] array) {
-		for (int i = 0; i < array.length; i++) {
-			if (index == array[i]) {
+	private boolean check_if_index_is_valid(int index) {
+		for (int i = 0; i < this.ALLOWED_INDEXES.length; i++) {
+			if (index == this.ALLOWED_INDEXES[i]) {
 				return true;
 			}
 		}
