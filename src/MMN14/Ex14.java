@@ -1,5 +1,10 @@
 package MMN14;
 
+/**
+ * This class is the class of answers for MMN14
+ * @author Kfir Levy
+ * @version 26/12/2021
+ */
 public class Ex14 {
 
     /**
@@ -35,7 +40,8 @@ public class Ex14 {
         return minDiff;
     }
 
-//    public static boolean search (int [][] mat, int num) {
+
+    public static boolean search (int [][] mat, int num) {
 //        if (num >= mat[0][0] && num <= mat[mat.length - 1][0]) {
 //            for (int i=0; i<mat.length / 2; i++) {
 //                if (num >= mat[0][0] && num <= mat[mat.length / 2 - 1][0]) {
@@ -58,8 +64,21 @@ public class Ex14 {
 //                }
 //            }
 //        }
-//        return false;
-//    }
+        for (int i=0; i < mat.length / 2; i++) {
+            System.out.println(mat[i][0]);
+            if (num >= mat[0][0] && num <= mat[mat.length / 2 - 1][0]) {
+                System.out.println("kkk");
+            } else {
+                System.out.println("Not");
+            }
+        }
+        return false;
+    }
+
+    private static boolean test(int [][]mat, int num) {
+        return num >= mat[0][0] && num <= mat[mat.length - 1][0];
+    }
+
 
     /**
      * This function check if an array can be split to two arrays that identical in there length and sum
@@ -94,7 +113,11 @@ public class Ex14 {
      */
     public static boolean isSpecial (int n) {
         final int START_JUMPING_VALUE = 2; // Stating number of jumping
-        return isSpecialRecursive(n, START_JUMPING_VALUE);
+        final int START_OF_POSITIVE_NUMBERS = 0; // Stating of positive numbers
+        if (n > START_OF_POSITIVE_NUMBERS){
+            return isSpecialRecursive(n, START_JUMPING_VALUE);
+        }
+        return false;
     }
 
     // This function is a recursive function that gets an index of number and the jumping index, its checks if we make
@@ -115,8 +138,9 @@ public class Ex14 {
     }
 
     public static void main(String[] args) {
-//        int[][] a = {{1, 3, 7, 9}, {6, 4, 15, 11}, {36, 50, 21, 22}, {60, 55, 30, 26}};
+        int[][] a = {{1, 3, 7, 9}, {6, 4, 15, 11}, {36, 50, 21, 22}, {60, 55, 30, 26}};
+        System.out.println(search(a, 5));
 //        System.out.println(equalSplit(new int[]{-3, 5, -12, 14, -9}));
-        System.out.println(isSpecial(4));
+//        System.out.println(isSpecial(4));
     }
 }
