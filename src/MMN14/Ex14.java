@@ -14,7 +14,7 @@ public class Ex14 {
      * The time complexity of this function is O(n), n stands for the length of the array.
      * The function run only one time over the array so in the worst case it will check n values.
      *
-     * The space complexity of this function is O(4), the function using only 4 parameters
+     * The space complexity of this function is O(1), the function using only 4 parameters and not using any arrays.
      *
      * @param a array of numbers
      * @param x first number
@@ -41,44 +41,49 @@ public class Ex14 {
     }
 
 
+    /**
+     * This function gets a mat that is already sorted in a specific way and a number.
+     * The function should check if the number is in the array in the most efficient way.
+     *
+     * The time complexity of this function is O(log(n)), n stands for the size of the mat.
+     * Each time we're entering the loop we make the problem smaller, because now we are searching only
+     * a quarter of the all matrix.
+     *
+     * The space complexity of this function is O(1), the function using only 7 parameters and not using any arrays.
+     *
+     * @param mat Matrix that is sorted in a given way
+     * @param num The number to search for in the matrix
+     * @return True if the number is in the matrix, false otherwise
+     */
     public static boolean search (int [][] mat, int num) {
-//        if (num >= mat[0][0] && num <= mat[mat.length - 1][0]) {
-//            for (int i=0; i<mat.length / 2; i++) {
-//                if (num >= mat[0][0] && num <= mat[mat.length / 2 - 1][0]) {
-//
-//                }
-//                for (int j=0; j<mat[i].length / 2; j++) {
-//                    System.out.println(mat[i][j]);
-//                }
-//                for (int j=mat[i].length / 2; j<mat[i].length; j++) {
-//                    System.out.println(mat[i][j]);
-//                }
-//            }
-//
-//            for (int i=mat.length / 2; i<mat.length; i++) {
-//                for (int j=0; j<mat[i].length / 2; j++) {
-//                    System.out.println(mat[i][j]);
-//                }
-//                for (int j=mat[i].length / 2; j<mat[i].length; j++) {
-//                    System.out.println(mat[i][j]);
-//                }
-//            }
-//        }
-        for (int i=0; i < mat.length / 2; i++) {
-            System.out.println(mat[i][0]);
-            if (num >= mat[0][0] && num <= mat[mat.length / 2 - 1][0]) {
-                System.out.println("kkk");
+        final int LAST_CELL_DIFF = 1; // Diff between length of array and last cell index
+        final int SIZE_OF_MINI_SQUARE_IN_RATIO = 2; //  Ration size of quarter in the matrix
+        int colStart = 0, rowStart = 0, rowEnd = mat.length, colEnd = mat[0].length;
+        while (true) {
+            int mini_square_size = (colEnd - colStart) / SIZE_OF_MINI_SQUARE_IN_RATIO; // Size of quarter in mat
+            if (rowEnd - LAST_CELL_DIFF == rowStart && colEnd - LAST_CELL_DIFF== colStart) // Checks if the mat is in size of 1
+                return mat[rowStart][colStart] == num; // Checks if the number is the number we searched
+            else if ((mat[rowStart][colStart] <= num) &&
+                    (mat[rowStart + mini_square_size - LAST_CELL_DIFF][colStart] >= num)) { // Checks if the number is in the range of numbers in the first quarter
+                colEnd = colStart / SIZE_OF_MINI_SQUARE_IN_RATIO + colEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+                rowEnd = rowStart / SIZE_OF_MINI_SQUARE_IN_RATIO + rowEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+            } else if ((mat[rowStart][colStart + mini_square_size] <= num) &&
+                    (mat[rowStart + mini_square_size - LAST_CELL_DIFF][colStart + mini_square_size] >= num)) { // Checks if the number is in the range of numbers in the second quarter
+                colStart = colStart / SIZE_OF_MINI_SQUARE_IN_RATIO + colEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+                rowEnd = rowStart / SIZE_OF_MINI_SQUARE_IN_RATIO + rowEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+            } else if ((mat[rowEnd / SIZE_OF_MINI_SQUARE_IN_RATIO][colStart + mini_square_size] <= num) &&
+                    (mat[rowEnd - LAST_CELL_DIFF][colStart + mini_square_size] >= num)) { // Checks if the number is in the range of numbers in the third quarter
+                colStart = colStart / SIZE_OF_MINI_SQUARE_IN_RATIO + colEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+                rowStart = rowStart / SIZE_OF_MINI_SQUARE_IN_RATIO + rowEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+            } else if ((mat[rowEnd / SIZE_OF_MINI_SQUARE_IN_RATIO][colStart] <= num) &&
+                    (mat[rowEnd - LAST_CELL_DIFF][colStart] >= num)) { // Checks if the number is in the range of numbers in the fourth quarter
+                rowStart = rowStart / SIZE_OF_MINI_SQUARE_IN_RATIO + rowEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
+                colEnd = colStart / SIZE_OF_MINI_SQUARE_IN_RATIO + colEnd / SIZE_OF_MINI_SQUARE_IN_RATIO;
             } else {
-                System.out.println("Not");
+                return false; // if the number is not in any of quarters ranges we return false
             }
         }
-        return false;
     }
-
-    private static boolean test(int [][]mat, int num) {
-        return num >= mat[0][0] && num <= mat[mat.length - 1][0];
-    }
-
 
     /**
      * This function check if an array can be split to two arrays that identical in there length and sum
@@ -135,12 +140,5 @@ public class Ex14 {
             // Check for the next jumping value if the index of number is still in array
             return isSpecialRecursive(nIndex - nIndex / jumpingIndex, jumpingIndex + DEFAULT_ONE_STEP_FORWARD);
         }
-    }
-
-    public static void main(String[] args) {
-        int[][] a = {{1, 3, 7, 9}, {6, 4, 15, 11}, {36, 50, 21, 22}, {60, 55, 30, 26}};
-        System.out.println(search(a, 5));
-//        System.out.println(equalSplit(new int[]{-3, 5, -12, 14, -9}));
-//        System.out.println(isSpecial(4));
     }
 }
