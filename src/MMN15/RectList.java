@@ -24,12 +24,16 @@ public class RectList {
      */
     public void addRect(RectangleA r) {
         RectNode node = this._head; // Copy the pointer so we won't lose the head
-        while (node.getNext() != null) { // While we are not in the last RectNode, keep going
-            if (node.getRect().equals(r)) { // If one of the RectNode's in the RectList has the value of r we do nothing
-                return;
+        if (node == null) {
+            this._head = new RectNode(r); // Sets last RectNode to point to a new RectNode with r as his RectangleA
+        } else {
+            while (node.getNext() != null) { // While we are not in the last RectNode, keep going
+                if (node.getRect().equals(r)) { // If one of the RectNode's in the RectList has the value of r we do nothing
+                    return;
+                }
             }
+            node.setNext(new RectNode(r)); // Sets last RectNode to point to a new RectNode with r as his RectangleA
         }
-        node.setNext(new RectNode(r)); // Sets last RectNode to point to a new RectNode with r as his RectangleA
     }
 
     /**
@@ -120,5 +124,32 @@ public class RectList {
         } else {
             return new RectangleA(this.mostLeftRect(), this.highestRect());
         }
+    }
+
+    /**
+     * This function return a string of all Rectangles in RectList in a specific format.
+     * @return stringToReturn - all Rectangles in RectList in a specific format.
+     */
+    public String toString() {
+        int numberOfRectangles = this.calcRectanglesNumbersInList();
+        String stringToReturn = "The list has " + numberOfRectangles + " rectangles.\n";
+        int counter = 0;
+        RectNode node = this._head;
+        while (node != null && node.getNext() != null) {
+            stringToReturn += counter + ". " + node.getRect().toString() + '\n';
+        }
+        return stringToReturn;
+    }
+
+    // This function calculate the number of rectangles in RectList.
+    private int calcRectanglesNumbersInList() {
+        RectNode node = this._head;
+        int numberOfRectangles = 0;
+        if (node != null) {
+            while (node.getNext() != null) {
+                numberOfRectangles ++;
+            }
+        }
+        return numberOfRectangles;
     }
 }
