@@ -41,8 +41,8 @@ public class StudentTesterMaman15
         RectList list = new RectList(); 
 
         //add rectangles
-        list.addRect(new RectangleA(1,2)); 
-        list.addRect(new RectangleA(3,4)); 
+        list.addRect(new RectangleA(1,2));
+        list.addRect(new RectangleA(3,4));
         list.addRect(new RectangleA(new Point(1,1),5,6));
 
         //toString

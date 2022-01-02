@@ -30,6 +30,8 @@ public class RectList {
             while (node.getNext() != null) { // While we are not in the last RectNode, keep going
                 if (node.getRect().equals(r)) { // If one of the RectNode's in the RectList has the value of r we do nothing
                     return;
+                } else {
+                    node = node.getNext();
                 }
             }
             node.setNext(new RectNode(r)); // Sets last RectNode to point to a new RectNode with r as his RectangleA
@@ -50,6 +52,7 @@ public class RectList {
                 if (node.getRect().getPointSW().equals(p)) { // Checks if this RectNode rectangle south-west point is the same as p
                     numberOfPointsThatMatch++;
                 }
+                node = node.getNext();
             }
         }
         return numberOfPointsThatMatch;
@@ -68,6 +71,7 @@ public class RectList {
                 if (node.getRect().getDiagonalLength() > longestDiagonal) { // Checks if this RectNode diagonal is longer the longestDiagonal
                     longestDiagonal = node.getRect().getDiagonalLength();
                 }
+                node = node.getNext();
             }
         }
         return longestDiagonal;
@@ -88,6 +92,7 @@ public class RectList {
                 if (node.getRect().getPointSW().isLeft(mostLeftPoint)) { // Checks if this RectNode RectangleA SW point is left sided to mostLeftPoint
                     mostLeftPoint = new Point(node.getRect().getPointSW());
                 }
+                node = node.getNext();
             }
             return mostLeftPoint;
         }
@@ -108,6 +113,7 @@ public class RectList {
                 if (node.getRect().getPointNE().isAbove(highestPoint)) { // Checks if this RectNode RectangleA NE point is above to highestPoint
                     highestPoint = new Point(node.getRect().getPointNE());
                 }
+                node = node.getNext();
             }
             return highestPoint;
         }
@@ -133,10 +139,13 @@ public class RectList {
     public String toString() {
         int numberOfRectangles = this.calcRectanglesNumbersInList();
         String stringToReturn = "The list has " + numberOfRectangles + " rectangles.\n";
-        int counter = 0;
+        int counter = 1;
         RectNode node = this._head;
-        while (node != null && node.getNext() != null) {
+        if (node != null) {
             stringToReturn += counter + ". " + node.getRect().toString() + '\n';
+            while (node.getNext() != null) {
+                stringToReturn += counter + ". " + node.getRect().toString() + '\n';
+            }
         }
         return stringToReturn;
     }
@@ -146,6 +155,7 @@ public class RectList {
         RectNode node = this._head;
         int numberOfRectangles = 0;
         if (node != null) {
+            numberOfRectangles ++;
             while (node.getNext() != null) {
                 numberOfRectangles ++;
             }
