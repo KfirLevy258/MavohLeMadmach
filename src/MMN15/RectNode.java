@@ -1,5 +1,4 @@
 package MMN15;
-import MMN12.RectangleA;
 
 /**
  * This class defines a RectNode by RectangleA and a next RectNode

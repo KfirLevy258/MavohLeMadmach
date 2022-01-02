@@ -1,8 +1,5 @@
 package MMN15;
 
-import MMN12.Point;
-import MMN12.RectangleA;
-
 /**  kilroy
  *               _____   here
  *         was  /     \    

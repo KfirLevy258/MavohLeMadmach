@@ -1,7 +1,5 @@
 package MMN15;
 
-import MMN12.Point;
-import MMN12.RectangleA;
 
 /**
  * This is a basic tester for Maman 15 2022A.
