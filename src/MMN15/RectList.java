@@ -25,15 +25,15 @@ public class RectList {
         if (node == null) {
             this._head = new RectNode(r); // Sets last RectNode to point to a new RectNode with r as his RectangleA
         } else {
-            while (node.getNext() != null) { // While we are not in the last RectNode, keep going
+            RectNode prev_node = this._head; // Copy the pointer so we won't lose the head
+            while (node != null) { // While we are not in the last RectNode, keep going
                 if (node.getRect().equals(r)) { // If one of the RectNode's in the RectList has the value of r we do nothing
                     return;
                 }
+                prev_node = node;
                 node = node.getNext();
             }
-            if (!node.getRect().equals(r)) {
-                node.setNext(new RectNode(r)); // Sets last RectNode to point to a new RectNode with r as his RectangleA
-            }
+            prev_node.setNext(new RectNode(r)); // Sets last RectNode to point to a new RectNode with r as his RectangleA
         }
     }
 
