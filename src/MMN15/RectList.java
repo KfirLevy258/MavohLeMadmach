@@ -10,6 +10,8 @@ public class RectList {
 
     /**
      * Constructor that init's this._head to null
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      */
     public RectList() {
         this._head = null;
@@ -18,6 +20,8 @@ public class RectList {
     /**
      * This function gets a RectangleA and adds it to the end of the RectList.
      * If the given RectangleA already exist in the RectList, we do nothing.
+     * The time complexity of this function is O(n), n stands for the length of the array.
+     * The space complexity of this function is O(1).
      * @param r The RectangleA to add to the RectList
      */
     public void addRect(RectangleA r) {
@@ -41,6 +45,8 @@ public class RectList {
     /**
      * This function count all the RectNode in RectList that their RectangleA SW point is the same as a given point.
      * If RectList is empty we return 0.
+     * The time complexity of this function is O(n), n stands for the length of the array.
+     * The space complexity of this function is O(1).
      * @param p The given South-West point to compare to
      * @return numberOfPointsThatMatch - Number of RectangleA that their SW point are the same as p
      */
@@ -61,6 +67,8 @@ public class RectList {
     /**
      * This function check what is the largest diagonal line of all the RectangleA in RectList.
      * If RectList is empty we return 0.
+     * The time complexity of this function is O(n) , n stands for the length of the array.
+     * The space complexity of this function is O(1).
      * @return longestDiagonal - The longest diagonal in all the RectangleA in RectList.
      */
     public double longestDiagonal() {
@@ -80,6 +88,8 @@ public class RectList {
     /**
      * This function find the most left SW point in all the RectangleA in RectList.
      * If RectList is empty we return null.
+     * The time complexity of this function is O(n), n stands for the length of the array.
+     * The space complexity of this function is O(n), n stands for the length of the array.
      * @return mostSWPoint - the most left SW point in all the RectangleA in RectList.
      */
     public Point mostLeftRect() {
@@ -101,6 +111,8 @@ public class RectList {
     /**
      * This function find the highest point in all the RectangleA in RectList.
      * If RectList is empty we return null.
+     * The time complexity of this function is O(n), n stands for the length of the array.
+     * The space complexity of this function is O(n), n stands for the length of the array.
      * @return highestPoint - the highest point in all the RectangleA in RectList.
      */
     public Point highestRect() {
@@ -121,6 +133,8 @@ public class RectList {
 
     // This function find the lowest point in all the RectangleA in RectList.
     // If RectList is empty we return null.
+    // The time complexity of this function is O(n), n stands for the length of the array.
+    // The space complexity of this function is O(n), n stands for the length of the array.
     private Point lowestRect() {
         RectNode node = this._head; // Copy the pointer so we won't lose the head
         if (node == null) { // Check if the list is empty
@@ -139,6 +153,8 @@ public class RectList {
 
     // This function find the most right point in all the RectangleA in RectList.
     // If RectList is empty we return null.
+    // The time complexity of this function is O(n), n stands for the length of the array.
+    //The space complexity of this function is O(n), n stands for the length of the array.
     public Point mostRightRect() {
         RectNode node = this._head; // Copy the pointer so we won't lose the head
         if (node == null) { // Check if the list is empty
@@ -158,6 +174,8 @@ public class RectList {
     /**
      * This function returns the minimal rectangle that contains all the rectangles in RectList.
      * If RectList is empty we return null.
+     * The time complexity of this function is O(n), n stands for the length of the array.
+     * The space complexity of this function is O(n), n stands for the length of the array.
      * @return a new RectangleA, the minimal rectangle that contains all the rectangles in RectList.
      */
     public RectangleA minimalContainer() {
@@ -172,6 +190,8 @@ public class RectList {
 
     /**
      * This function return a string of all Rectangles in RectList in a specific format.
+     * The time complexity of this function is O(n), n stands for the length of the array.
+     * The space complexity of this function is O(1).
      * @return stringToReturn - all Rectangles in RectList in a specific format.
      */
     public String toString() {

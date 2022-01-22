@@ -11,6 +11,8 @@ public class RectNode {
 
     /**
      * Construct a RectNode with a given RectangleA and a null RectNode.
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      * @param r The RectangleA to set.
      */
     public RectNode (RectangleA r) {
@@ -20,6 +22,8 @@ public class RectNode {
 
     /**
      * Construct a RectNode with a given RectangleA and a given RectNode.
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      * @param r The RectangleA to set.
      * @param n The RectNode to set.
      */
@@ -30,6 +34,8 @@ public class RectNode {
 
     /**
      * Copy construct, gets a RectNode and copy his RectangleA and RectNode
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      * @param r The RectNode to copy.
      */
     public RectNode (RectNode r) {
@@ -39,6 +45,8 @@ public class RectNode {
 
     /**
      * This function return a copy of this._rect
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      */
     public RectangleA getRect() {
         return new RectangleA(this._rect);
@@ -46,6 +54,8 @@ public class RectNode {
 
     /**
      * This function return a pointer of this._next
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      */
     public RectNode getNext() {
         return this._next;
@@ -53,6 +63,8 @@ public class RectNode {
 
     /**
      * This function copy a given RectangleA params and sets this._rect params accordingly
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      * @param r The given RectangleA to copy his params
      */
     public void setRect(RectangleA r) {
@@ -63,6 +75,8 @@ public class RectNode {
 
     /**
      * This function gets a pointer sets this.next pointer accordingly
+     * The time complexity of this function is O(1).
+     * The space complexity of this function is O(1).
      * @param next
      */
     public void setNext(RectNode next) {
